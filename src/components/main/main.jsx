@@ -1,29 +1,39 @@
 import React from "react";
+import MediaCard from "./item";
 import "./main.css";
+import AssignmentIcon from '@material-ui/icons/Assignment';
 
 const Main = () => {
   return(
     <div className="main">
-      <div>最近作られた項目</div>
+     
+      <div className="main-top">
+        <AssignmentIcon /> 
+        <div className="main-title">最近作られた項目</div>
+      </div>
 
       <div className="items">
         
         <div className="item">
-          <div className="item-name">開店作業</div>
-        </div>
-        
-        <div className="item">
-    　    <div className="item-name">閉店作業</div>
-        </div>
-        
-        <div className="item">
-          <div className="item-name">クレーム</div>
-        </div>
-        
-        <div className="item">
-          <div className="item-name">清掃</div>
+          <MediaCard />
         </div>
 
+        <div className="item">
+          <MediaCard />
+        </div>
+
+        <div className="item">
+          <MediaCard />
+        </div>
+
+        <div className="item">
+          <MediaCard />
+        </div>
+        
+        <div className="item">
+          <MediaCard />
+        </div>
+        
       </div>
     </div>
   );
