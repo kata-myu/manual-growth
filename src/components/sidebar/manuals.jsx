@@ -9,6 +9,8 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 
+import MenuBookTwoToneIcon from '@material-ui/icons/MenuBookTwoTone';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -29,26 +31,38 @@ export default function SimpleList() {
       <List component="nav" aria-label="main mailbox folders">
         <ListItem button>
           <ListItemIcon>
-            <InboxIcon />
+            <MenuBookTwoToneIcon />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="業務フロー" />
         </ListItem>
         <ListItem button>
           <ListItemIcon>
-            <DraftsIcon />
+            <MenuBookTwoToneIcon />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="接客マナー" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <MenuBookTwoToneIcon />
+          </ListItemIcon>
+          <ListItemText primary="キッチン業務" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <MenuBookTwoToneIcon />
+          </ListItemIcon>
+          <ListItemText primary="トラブル対応" />
         </ListItem>
       </List>
-      <Divider />
-      <List component="nav" aria-label="secondary mailbox folders">
+      {/* <Divider /> */}
+      {/* <List component="nav" aria-label="secondary mailbox folders">
         <ListItem button>
           <ListItemText primary="Trash" />
         </ListItem>
         <ListItemLink href="#simple-list">
           <ListItemText primary="Spam" />
         </ListItemLink>
-      </List>
+      </List> */}
     </div>
   );
 }

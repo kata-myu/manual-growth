@@ -31,11 +31,11 @@ export default function MediaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            開店業務
+            清掃業務
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+            清掃はすべての業務における基本であり、最重要事項の一つです。
+            ここでは清掃業務のやり方を示していますので、必ず実行してください。
           </Typography>
         </CardContent>
       </CardActionArea>

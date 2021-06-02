@@ -29,6 +29,10 @@ const Main = () => {
         <div className="item">
           <MediaCard />
         </div>
+
+        <div className="item">
+          <MediaCard />
+        </div>
         
         <div className="item">
           <MediaCard />
