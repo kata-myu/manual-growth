@@ -9,6 +9,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import {useState} from "react";
+import Modal from "react-modal";
+
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
@@ -18,12 +21,39 @@ const useStyles = makeStyles({
   },
 });
 
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgb(80, 80, 80, 0.8)",
+  },
+  content: {
+    top: "10%",
+    left: "60%",
+    right: "50%",
+    height: "75vh",
+    width: "20vw",
+    marginLeft: "-30vw",
+    padding: "2vw 10vw",
+  },
+};
+
 export default function MediaCard() {
   const classes = useStyles();
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
+  Modal.setAppElement("#root");
+
   return (
     <Card className={classes.root}>
-      <CardActionArea>
+      <CardActionArea onClick={handleOpen}>
         <CardMedia
           className={classes.media}
           image="/images/image1.jpg"  //publicがとっぷになっているっぽい
@@ -47,6 +77,7 @@ export default function MediaCard() {
           Learn More
         </Button>
       </CardActions>
+      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose} />
     </Card>
   );
 }
