@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+
 import SimpleList from "./manuals";
 import NewManualModal from "../modal/newManualModal";
 import "./sidebar.css";

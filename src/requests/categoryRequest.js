@@ -1,12 +1,17 @@
 import axiosBase from "axios";
 
 const api = axiosBase.create({
-  baseURL: "http://loacalhost3000/",
+  baseURL: "http://localhost:3000/",
   responseType: "json",
 });
 
-const categoryRequest = async () => {
-  const categoriesData = await api.get("/");
-  return categoriesData;
+const categoryRequest = async (action) => {
+  switch(action){
+    case "fetch":
+      const categoriesData = await api.get("categories");
+      return categoriesData;
+    default:
+      return null;
+  }
 };
 export default categoryRequest;

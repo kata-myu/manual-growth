@@ -1,28 +1,36 @@
-import React, {useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import Header from "./components/header/header";
 import SideBar from "./components/sidebar/sidebar";
 import Main from "./components/main/main";
 import categoryRequest from "./requests/categoryRequest";
 import "./App.css";
 
+export const CategoryContext = React.createContext([])
+
 const App = () => {
+
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchCategories =  async () => {
-      const response = await categoryRequest;
-      console.log(response);
+      const response = await categoryRequest("fetch");
+      setCategories(response.data)
     }
     fetchCategories()
   }, [])
+  
 
   return(
-    <div>
-      <Header></Header>
-      <div className="contents">
-        <SideBar></SideBar>
-        <Main></Main>
+    <CategoryContext.Provider value={categories}>
+      <div></div>
+      <div>
+        <Header></Header>
+        <div className="contents">
+          <SideBar></SideBar>
+          <Main></Main>
+        </div>
       </div>
-    </div>
+    </CategoryContext.Provider>
   );
 };
 export default App;
