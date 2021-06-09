@@ -1,5 +1,7 @@
 import React, {useState} from "react";
+
 import SimpleList from "./manuals";
+import NewManualModal from "../modal/newManualModal";
 import "./sidebar.css";
 import Button from '@material-ui/core/Button';
 import Modal from "react-modal";
@@ -14,8 +16,8 @@ const customStyles = {
     left: "60%",
     right: "50%",
     height: "75vh",
-    width: "20vw",
-    marginLeft: "-30vw",
+    width: "60vw",
+    marginLeft: "-50vw",
     padding: "2vw 10vw",
   },
 };
@@ -46,7 +48,10 @@ const SideBar = () => {
       <div className="index">
         <SimpleList />
       </div>
-      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose} />
+
+      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
+        <NewManualModal />
+      </Modal>
     </div>
   );
 };

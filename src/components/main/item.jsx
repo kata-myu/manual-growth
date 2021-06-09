@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 
 import {useState} from "react";
 import Modal from "react-modal";
+import ShowModal from "../modal/showModal";
 
 const useStyles = makeStyles({
   root: {
@@ -30,8 +31,8 @@ const customStyles = {
     left: "60%",
     right: "50%",
     height: "75vh",
-    width: "20vw",
-    marginLeft: "-30vw",
+    width: "80vw",
+    marginLeft: "-60vw",
     padding: "2vw 10vw",
   },
 };
@@ -77,7 +78,9 @@ export default function MediaCard() {
           Learn More
         </Button>
       </CardActions>
-      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose} />
+      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
+        <ShowModal />
+      </Modal>
     </Card>
   );
 }

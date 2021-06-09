@@ -1,5 +1,6 @@
 // List(シンプルなリスト)
-import React from 'react';
+import React, {useContext} from 'react';
+import {CategoryContext} from "../../App";
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,36 +25,29 @@ function ListItemLink(props) {
 }
 
 export default function SimpleList() {
+
+  const categoriesData  = useContext(CategoryContext)
+  console.log(categoriesData);
+  
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
-          <ListItemIcon>
-            <MenuBookTwoToneIcon />
-          </ListItemIcon>
-          <ListItemText primary="業務フロー" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MenuBookTwoToneIcon />
-          </ListItemIcon>
-          <ListItemText primary="接客マナー" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MenuBookTwoToneIcon />
-          </ListItemIcon>
-          <ListItemText primary="キッチン業務" />
-        </ListItem>
-        <ListItem button>
-          <ListItemIcon>
-            <MenuBookTwoToneIcon />
-          </ListItemIcon>
-          <ListItemText primary="トラブル対応" />
-        </ListItem>
+
+        {categoriesData.map((category) => {
+          return(
+           <ListItem button key={category.id}>
+           <ListItemIcon>
+             <MenuBookTwoToneIcon />
+           </ListItemIcon>
+           <ListItemText primary={category.name} />
+         </ListItem>
+          )
+        })}
+        
       </List>
+
       {/* <Divider /> */}
       {/* <List component="nav" aria-label="secondary mailbox folders">
         <ListItem button>
