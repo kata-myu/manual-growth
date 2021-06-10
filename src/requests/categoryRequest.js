@@ -1,15 +1,29 @@
 import axiosBase from "axios";
 
-const api = axiosBase.create({
-  baseURL: "http://localhost:3000/",
-  responseType: "json",
-});
+const url = window.location.href
+console.log(url);
+
+
 
 const categoryRequest = async (action) => {
   switch(action){
     case "fetch":
-      const categoriesData = await api.get("categories");
-      return categoriesData;
+      if(url === "http://localhost:3001/"){
+        const api = axiosBase.create({
+          baseURL: "http://localhost:3000/",
+          responseType: "json",
+        });
+        const categoriesData = await api.get("categories");
+        return categoriesData;
+        }
+        else{
+          const api = axiosBase.create({
+            baseURL: "https://manual-growth-server.herokuapp.com/",
+            responseType: "json",
+          });
+          const categoriesData = await api.get("categories");
+          return categoriesData;
+        }
     default:
       return null;
   }
