@@ -18,8 +18,8 @@ const App = () => {
     }
     fetchCategories()
   }, [])
-  
 
+  
   return(
     <CategoryContext.Provider value={categories}>
       <div></div>
