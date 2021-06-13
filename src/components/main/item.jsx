@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import {useState} from "react";
 import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
+import "./main.css"
 
 const useStyles = makeStyles({
   root: {
@@ -53,33 +54,33 @@ export default function MediaCard(props) {
   Modal.setAppElement("#root");
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea onClick={handleOpen}>
-        <CardMedia
-          className={classes.media}
-          image="/images/image1.jpg"  //publicがとっぷになっているっぽい
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.manual.job}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {props.manual.heading}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
-        <ShowModal manual={props.manual} />
-      </Modal>
-    </Card>
+      <Card className={classes.root} className="card">
+        <CardActionArea onClick={handleOpen}>
+          <CardMedia
+            className={classes.media}
+            image="/images/image1.jpg"  //publicがとっぷになっているっぽい
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.manual.job}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.manual.heading}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+        <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
+          <ShowModal manual={props.manual} />
+        </Modal>
+      </Card>
   );
 }
