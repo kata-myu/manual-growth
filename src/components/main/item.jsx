@@ -37,7 +37,7 @@ const customStyles = {
   },
 };
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -62,11 +62,10 @@ export default function MediaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            清掃業務
+            {props.manual.job}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            清掃はすべての業務における基本であり、最重要事項の一つです。
-            ここでは清掃業務のやり方を示していますので、必ず実行してください。
+            {props.manual.heading}
           </Typography>
         </CardContent>
       </CardActionArea>
