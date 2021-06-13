@@ -18,9 +18,9 @@ const Main = () => {
 
       <div className="items">
         
-        {manualsData.map((manual) => {
+        {manualsData.map((manual, index) => {
           return(
-            <div className="item">
+            <div className="item" key={index}>
               <MediaCard manual={manual} />
             </div>
           )

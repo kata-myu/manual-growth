@@ -78,7 +78,7 @@ export default function MediaCard(props) {
         </Button>
       </CardActions>
       <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
-        <ShowModal />
+        <ShowModal manual={props.manual} />
       </Modal>
     </Card>
   );

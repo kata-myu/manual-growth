@@ -35,14 +35,14 @@ export default function SimpleList() {
     <div className={classes.root}>
       <List component="nav" aria-label="main mailbox folders">
 
-        {categoriesData.map((category) => {
+        {categoriesData.map((category, index) => {
           return(
-           <ListItem button key={category.id}>
-           <ListItemIcon>
-             <MenuBookTwoToneIcon />
-           </ListItemIcon>
-           <ListItemText primary={category.name} />
-         </ListItem>
+           <ListItem button key={index}>
+              <ListItemIcon>
+                <MenuBookTwoToneIcon />
+              </ListItemIcon>
+              <ListItemText primary={category.name} />
+           </ListItem>
           )
         })}
         
