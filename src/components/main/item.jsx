@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import {useState} from "react";
 import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
+import "./main.css"
 
 const useStyles = makeStyles({
   root: {
@@ -37,7 +38,7 @@ const customStyles = {
   },
 };
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -53,34 +54,33 @@ export default function MediaCard() {
   Modal.setAppElement("#root");
 
   return (
-    <Card className={classes.root}>
-      <CardActionArea onClick={handleOpen}>
-        <CardMedia
-          className={classes.media}
-          image="/images/image1.jpg"  //publicがとっぷになっているっぽい
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            清掃業務
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            清掃はすべての業務における基本であり、最重要事項の一つです。
-            ここでは清掃業務のやり方を示していますので、必ず実行してください。
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Learn More
-        </Button>
-      </CardActions>
-      <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
-        <ShowModal />
-      </Modal>
-    </Card>
+      <Card className={classes.root} className="card">
+        <CardActionArea onClick={handleOpen}>
+          <CardMedia
+            className={classes.media}
+            image="/images/image1.jpg"  //publicがとっぷになっているっぽい
+            title="Contemplative Reptile"
+          />
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.manual.job}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.manual.heading}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size="small" color="primary">
+            Share
+          </Button>
+          <Button size="small" color="primary">
+            Learn More
+          </Button>
+        </CardActions>
+        <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
+          <ShowModal manual={props.manual} />
+        </Modal>
+      </Card>
   );
 }

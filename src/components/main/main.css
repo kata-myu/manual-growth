@@ -1,5 +1,5 @@
 .main {
-  height: calc(100vw - 60px);
+  /* height: calc(100vw - 60px); */
   width: calc(100vw - 18vw);
   padding-top: 20px;
   /* background-color: rgb(255, 255, 255); */
@@ -27,4 +27,9 @@
 
 .item{
   margin-top: 20px;
+}
+
+.card {
+  width: 280px;
+  height: 300px;
 }

@@ -6,15 +6,18 @@ import categoryRequest from "./requests/categoryRequest";
 import "./App.css";
 
 export const CategoryContext = React.createContext([])
+export const ManualContext = React.createContext([])
 
 const App = () => {
 
   const [categories, setCategories] = useState([]);
+  const [manuals, setManuals] = useState([]);
 
   useEffect(() => {
     const fetchCategories =  async () => {
       const response = await categoryRequest("fetch");
-      setCategories(response.data)
+      setCategories(response.data[0])
+      setManuals(response.data[1])
     }
     fetchCategories()
   }, [])
@@ -22,6 +25,7 @@ const App = () => {
   
   return(
     <CategoryContext.Provider value={categories}>
+    <ManualContext.Provider value={manuals}>
       <div></div>
       <div>
         <Header></Header>
@@ -30,6 +34,7 @@ const App = () => {
           <Main></Main>
         </div>
       </div>
+    </ManualContext.Provider>
     </CategoryContext.Provider>
   );
 };

@@ -1,6 +1,6 @@
 .sidebar {
   width: 18%;
-  height: calc(100vh - 60px);
+  /* height: calc(100vh - 60px); */
   padding-top: 20px;
   border-right: solid 1px rgb(238, 234, 234);
 }
