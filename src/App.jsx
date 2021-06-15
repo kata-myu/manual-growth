@@ -8,6 +8,7 @@ import "./App.css";
 export const CategoryContext = React.createContext([])
 export const ManualContext = React.createContext([])
 export const SetCategoryContext = React.createContext([])
+export const SetManualContext = React.createContext([])
 
 const App = () => {
 
@@ -28,6 +29,7 @@ const App = () => {
     <CategoryContext.Provider value={categories}>
     <ManualContext.Provider value={manuals}>
     <SetCategoryContext.Provider value={setCategories}>
+    <SetManualContext.Provider value={setManuals}>
       <div></div>
       <div>
         <Header></Header>
@@ -36,6 +38,7 @@ const App = () => {
           <Main></Main>
         </div>
       </div>
+    </SetManualContext.Provider>
     </SetCategoryContext.Provider>
     </ManualContext.Provider>
     </CategoryContext.Provider>

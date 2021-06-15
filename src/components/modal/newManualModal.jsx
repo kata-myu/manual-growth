@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useContext, useState, useCallback} from 'react';
+import {SetManualContext} from "../../App";
+import {CategoryContext} from "../../App";
+import categoryRequest from "../../requests/categoryRequest";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -17,14 +20,54 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewManualModal = () => {
+const NewManualModal = (props) => {
+
+  const categories  = useContext(CategoryContext)
+  const setManuals  = useContext(SetManualContext)
+
   const classes = useStyles();
 
-  const [age, setAge] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+  
+  const [categoryId, setCategoryId] = useState(0);
+  const [job, setJob] = useState("");
+  const [heading, setHeading] = useState("");
+  const [text, setText] = useState("");
+  
+  const inputCategory = useCallback((event) => {
+    setCategoryId(event.target.value)
+  },[setCategoryId]);
+
+  const inputJob = useCallback((event) => {
+    setJob(event.target.value)
+  },[setJob]);
+
+  const inputHeading = useCallback((event) => {
+    setHeading(event.target.value)
+  },[setHeading]);
+
+  const inputText = useCallback((event) => {
+    setText(event.target.value)
+  },[setText]);
+  
+
+  const submitForm = async () => {
+    try{
+      const manualData = {category_id: categoryId, job: job, heading: heading, text: text};
+      const manuals = await categoryRequest("manual", manualData);
+      console.log(manuals);
+      await setManuals(manuals.data[1]);
+      setCategoryId(0)
+      setHeading("")
+      setText("")
+      return props.handleClose()
+    }catch(err){
+      console.log(err);
+    }
   };
+
+
+  
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
@@ -33,28 +76,29 @@ const NewManualModal = () => {
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
-          value={age}
-          onChange={handleChange}
+          // value={0}
+          onChange={inputCategory}
         >
-          <MenuItem value={10}>業務フロー</MenuItem>
-          <MenuItem value={20}>接客マナー</MenuItem>
-          <MenuItem value={30}>キッチン業務</MenuItem>
-          <MenuItem value={30}>トラブル対応</MenuItem>
+          {categories.map((category, index) => {
+            return(
+              <MenuItem key={index} value={category.id}>{category.name}</MenuItem>
+            )
+          })}
         </Select>
       </FormControl>
       
-      <h5>新しいカテゴリをつけ足す場合は、 カテゴリ名を入力してください。</h5>
-      <TextField id="filled-basic" label="新しいカテゴリ名" variant="filled" />
+      <h5>マニュアル名を入力</h5>
+      <TextField id="filled-basic" label="マニュアル名" variant="filled" onChange={inputJob} />
       <h5>業務の見出しを入力</h5>
-      <TextField id="filled-basic" label="業務の見出し" variant="filled" />
+      <TextField id="filled-basic" label="業務の見出し" variant="filled" onChange={inputHeading} />
       <h5>業務内容を入力</h5>
-      <TextField id="filled-basic" label="業務内容" variant="filled" />
+      <TextField id="filled-basic" label="業務内容" variant="filled" onChange={inputText} />
       <div>
         <input
           className="input_submit"
           type="button"
           value="登録"
-          // onClick={onClickSubmit}
+          onClick={submitForm}
         />
         </div>
     </form>

@@ -2,6 +2,7 @@
 import React, {useState, useContext} from 'react';
 import Modal from "react-modal";
 import PlusCategoy from "../modal/plusCategory";
+import "./sidebar";
 
 import {CategoryContext} from "../../App";
 import { makeStyles } from '@material-ui/core/styles';
