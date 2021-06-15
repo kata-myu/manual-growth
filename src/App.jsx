@@ -7,6 +7,7 @@ import "./App.css";
 
 export const CategoryContext = React.createContext([])
 export const ManualContext = React.createContext([])
+export const SetCategoryContext = React.createContext([])
 
 const App = () => {
 
@@ -26,6 +27,7 @@ const App = () => {
   return(
     <CategoryContext.Provider value={categories}>
     <ManualContext.Provider value={manuals}>
+    <SetCategoryContext.Provider value={setCategories}>
       <div></div>
       <div>
         <Header></Header>
@@ -34,6 +36,7 @@ const App = () => {
           <Main></Main>
         </div>
       </div>
+    </SetCategoryContext.Provider>
     </ManualContext.Provider>
     </CategoryContext.Provider>
   );
