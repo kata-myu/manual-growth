@@ -1,8 +1,6 @@
 import axiosBase from "axios";
 
 const url = window.location.href
-console.log(url);
-
 
 
 const categoryRequest = async (action) => {
