@@ -50,7 +50,7 @@ const SideBar = () => {
       </div>
 
       <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
-        <NewManualModal />
+        <NewManualModal handleClose={handleClose} />
       </Modal>
     </div>
   );
