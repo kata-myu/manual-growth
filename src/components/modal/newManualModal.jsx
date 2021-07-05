@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
+// import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
@@ -27,8 +27,6 @@ const NewManualModal = (props) => {
 
   const classes = useStyles();
 
-
-  
   const [categoryId, setCategoryId] = useState(0);
   const [job, setJob] = useState("");
   const [heading, setHeading] = useState("");
@@ -66,8 +64,6 @@ const NewManualModal = (props) => {
     }
   };
 
-
-  
 
   return (
     <form className={classes.root} noValidate autoComplete="off">
