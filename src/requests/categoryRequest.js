@@ -39,13 +39,13 @@ const categoryRequest = async (action, params) => {
           const categoriesData = await api.post("categories", params);
           return categoriesData;
         }
-    case "manual":
+    case "create_manual":
       if(url === "http://localhost:3001/"){
         const api = axiosBase.create({
           baseURL: "http://localhost:3000/",
           responseType: "json",
         });
-        const categoriesData = await api.post("categories/manual", params);
+        const categoriesData = await api.post("categories/create_manual", params);
         return categoriesData;
         }
         else{
@@ -53,7 +53,24 @@ const categoryRequest = async (action, params) => {
             baseURL: "https://manual-growth-server.herokuapp.com/",
             responseType: "json",
           });
-          const categoriesData = await api.post("categories/manual", params);
+          const categoriesData = await api.post("categories/create_manual", params);
+          return categoriesData;
+        }
+    case "delete_manual":
+      if(url === "http://localhost:3001/"){
+        const api = axiosBase.create({
+          baseURL: "http://localhost:3000/",
+          responseType: "json",
+        });
+        const categoriesData = await api.delete(`categories/delete_manual?id=${params.id}`, params);
+        return categoriesData;
+        }
+        else{
+          const api = axiosBase.create({
+            baseURL: "https://manual-growth-server.herokuapp.com/",
+            responseType: "json",
+          });
+          const categoriesData = await api.delete(`categories/delete_manual?id=${params.id}`, params);
           return categoriesData;
         }
     default:
