@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useContext} from 'react';
+import {SetManualContext} from "../../App";
 import categoryRequest from "../../requests/categoryRequest";
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
@@ -8,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { defaultStyles } from 'react-modal';
 import Button from '@material-ui/core/Button';
+import "./modal.css";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 const ShowModal = (props) => {
-  console.log(props.manual);
+  const setManuals = useContext(SetManualContext);
+
+  // console.log(props.manual);
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -39,8 +44,8 @@ const ShowModal = (props) => {
     try{
       const manuals = await categoryRequest("delete_manual", id);
       console.log(manuals);
-      // await setManuals(manuals.data[1]);
-      // return props.handleClose()
+      await setManuals(manuals.data[1]);
+      return props.handleClose()
     }catch(err){
       console.log(err);
     }
