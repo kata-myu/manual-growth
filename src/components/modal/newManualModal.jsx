@@ -52,7 +52,7 @@ const NewManualModal = (props) => {
   const submitForm = async () => {
     try{
       const manualData = {category_id: categoryId, job: job, heading: heading, text: text};
-      const manuals = await categoryRequest("manual", manualData);
+      const manuals = await categoryRequest("create_manual", manualData);
       console.log(manuals);
       await setManuals(manuals.data[1]);
       setCategoryId(0)
