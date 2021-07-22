@@ -73,6 +73,23 @@ const categoryRequest = async (action, params) => {
           const categoriesData = await api.delete(`categories/delete_manual?id=${params.id}`, params);
           return categoriesData;
         }
+    case "select_category":
+      if(url === "http://localhost:3001/"){
+        const api = axiosBase.create({
+          baseURL: "http://localhost:3000/",
+          responseType: "json",
+        });
+        const categoriesData = await api.get(`categories/select_category?id=${params.id}`, params);
+        return categoriesData;
+        }
+        else{
+          const api = axiosBase.create({
+            baseURL: "https://manual-growth-server.herokuapp.com/",
+            responseType: "json",
+          });
+          const categoriesData = await api.get(`categories/select_category?id=${params.id}`, params);
+          return categoriesData;
+        }
     default:
       return null;
   }
