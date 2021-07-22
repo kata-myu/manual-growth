@@ -3,6 +3,8 @@ import React, {useState, useContext} from 'react';
 import Modal from "react-modal";
 import PlusCategoy from "../modal/plusCategory";
 import "./sidebar";
+import categoryRequest from "../../requests/categoryRequest";
+import {SetManualContext} from "../../App";
 
 import {CategoryContext} from "../../App";
 import { makeStyles } from '@material-ui/core/styles';
@@ -47,6 +49,7 @@ export default function SimpleList() {
 
   Modal.setAppElement("#root");
 
+
   const customStyles = {
     overlay: {
       backgroundColor: "rgb(80, 80, 80, 0.8)",
@@ -67,9 +70,24 @@ export default function SimpleList() {
   const categoriesData  = useContext(CategoryContext)
   console.log(categoriesData);
 
-
-  
   const classes = useStyles();
+
+
+  const setManuals = useContext(SetManualContext);
+
+
+
+  const selectCategory = async (id) => {
+    const categoryId = {id: id}
+    console.log(categoryId.id);
+    try{
+      const manuals = await categoryRequest("select_category", categoryId);
+      console.log(manuals);
+      await setManuals(manuals.data[1]);
+    }catch(err){
+      console.log(err);
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -81,12 +99,14 @@ export default function SimpleList() {
 
         {categoriesData.map((category, index) => {
           return(
-           <ListItem button key={index}>
-              <ListItemIcon>
-                <MenuBookTwoToneIcon />
-              </ListItemIcon>
-              <ListItemText primary={category.name} />
-           </ListItem>
+          <div onClick={() => selectCategory(category.id)}>  {/*() => をつけないと無限ループが発生する。ついていないと関数が走ってしまっているっぽい */}
+            <ListItem button key={index}>
+                <ListItemIcon>
+                  <MenuBookTwoToneIcon />
+                </ListItemIcon>
+                <ListItemText primary={category.name} />
+            </ListItem>
+          </div>
           )
         })}
         

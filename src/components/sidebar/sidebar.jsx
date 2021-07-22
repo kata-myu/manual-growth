@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import SimpleList from "./manuals";
+import SimpleList from "./category";
 import NewManualModal from "../modal/newManualModal";
 import "./sidebar.css";
 import Button from '@material-ui/core/Button';
