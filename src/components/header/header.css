@@ -17,3 +17,7 @@
 .search {
   margin-left: 50px;
 }
+
+.search-icon {
+  cursor: pointer;
+}

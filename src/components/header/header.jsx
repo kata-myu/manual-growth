@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useCallback, useContext } from 'react';
+import categoryRequest from "../../requests/categoryRequest";
+import {SetManualContext} from "../../App";
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -163,6 +165,23 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 
+
+  const [searchWord, setSearchWord] = useState("");
+  const setManuals  = useContext(SetManualContext)
+
+
+  const searchManual = async (word) => {
+    try{
+      const searchManual = {word: word}
+      const manuals = await categoryRequest("search_manual", searchManual);
+      console.log(manuals);
+      await setManuals(manuals.data[1]);
+    }catch(err){
+      console.log(err);
+    }
+  };
+
+
   return (
     <div className={classes.grow}>
       <AppBar position="static">
@@ -178,7 +197,7 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             ManualGrowth
           </Typography>
-          <div className="search">
+          <div className="search" onChange={(e) => searchManual(e.target.value)}>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
