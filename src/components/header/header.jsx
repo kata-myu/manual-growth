@@ -47,28 +47,29 @@ const useStyles = makeStyles((theme) => ({
       width: 'auto',
     },
   },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  // searchIcon: {
+  //   padding: theme.spacing(0, 2),
+  //   height: '100%',
+  //   position: 'absolute',
+  //   pointerEvents: 'none',
+  //   display: 'flex',
+  //   alignItems: 'center',
+  //   justifyContent: 'center',
+  //   fontSize: 8,
+  // },
   inputRoot: {
     color: 'inherit',
   },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
-  },
+  // inputInput: {
+  //   padding: theme.spacing(1, 1, 1, 0),
+  //   // vertical padding + font size from searchIcon
+  //   paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+  //   transition: theme.transitions.create('width'),
+  //   width: '100%',
+  //   [theme.breakpoints.up('md')]: {
+  //     width: '20ch',
+  //   },
+  // },
   sectionDesktop: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
@@ -166,11 +167,12 @@ export default function PrimarySearchAppBar() {
   );
 
 
-  const [searchWord, setSearchWord] = useState("");
+  // const [searchWord, setSearchWord] = useState("");
   const setManuals  = useContext(SetManualContext)
 
 
-  const searchManual = async (word) => {
+  const searchManual = async () => {
+    const word = document.getElementById("search-input").value
     try{
       const searchManual = {word: word}
       const manuals = await categoryRequest("search_manual", searchManual);
@@ -197,20 +199,11 @@ export default function PrimarySearchAppBar() {
           <Typography className={classes.title} variant="h6" noWrap>
             ManualGrowth
           </Typography>
-          <div className="search" onChange={(e) => searchManual(e.target.value)}>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </div>
+          <div className="search">
+            <button className="search-icon"  onClick={searchManual}>
+              <SearchIcon></SearchIcon>
+            </button>
+            <input id="search-input" />
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>

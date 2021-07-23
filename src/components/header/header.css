@@ -16,8 +16,13 @@
 
 .search {
   margin-left: 50px;
+  height: 30px;
 }
 
 .search-icon {
   cursor: pointer;
+}
+
+#search-input {
+  width: 200px;
 }
