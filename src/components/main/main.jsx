@@ -13,7 +13,7 @@ const Main = () => {
      
       <div className="main-top">
         <AssignmentIcon /> 
-        <div className="main-title">最近作られたマニュアル</div>
+        <div className="main-title">マニュアル一覧</div>
       </div>
 
       <div className="items">

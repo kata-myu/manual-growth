@@ -10,10 +10,12 @@ export const ManualContext = React.createContext([])
 export const SetCategoryContext = React.createContext([])
 export const SetManualContext = React.createContext([])
 
+
 const App = () => {
 
   const [categories, setCategories] = useState([]);
   const [manuals, setManuals] = useState([]);
+  
 
   useEffect(() => {
     const fetchCategories =  async () => {

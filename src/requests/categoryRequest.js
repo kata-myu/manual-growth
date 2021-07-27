@@ -45,7 +45,7 @@ const categoryRequest = async (action, params) => {
           baseURL: "http://localhost:3000/",
           responseType: "json",
         });
-        const categoriesData = await api.post("categories/create_manual", params);
+        const categoriesData = await api.post(`categories/create_manual`, params);
         return categoriesData;
         }
         else{
