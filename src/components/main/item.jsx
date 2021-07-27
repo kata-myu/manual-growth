@@ -58,7 +58,8 @@ export default function MediaCard(props) {
         <CardActionArea onClick={handleOpen}>
           <CardMedia
             className={classes.media}
-            image="/images/image1.jpg"  //publicがとっぷになっているっぽい
+            image={props.manual.image_url}
+            // image="/images/image1.jpg"  //publicがとっぷになっているっぽい
             title="Contemplative Reptile"
           />
           <CardContent>

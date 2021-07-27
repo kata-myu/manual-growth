@@ -24,6 +24,7 @@ const NewManualModal = (props) => {
 
   const categories  = useContext(CategoryContext)
   const setManuals  = useContext(SetManualContext)
+  const headers = { "Content-Type": "multipart/form-data" };
 
   const classes = useStyles();
 
@@ -31,6 +32,7 @@ const NewManualModal = (props) => {
   const [job, setJob] = useState("");
   const [heading, setHeading] = useState("");
   const [text, setText] = useState("");
+  const [image, setImage] = useState("");
   
   const inputCategory = useCallback((event) => {
     setCategoryId(event.target.value)
@@ -47,12 +49,24 @@ const NewManualModal = (props) => {
   const inputText = useCallback((event) => {
     setText(event.target.value)
   },[setText]);
+
+  const inputImage = useCallback((event) => {
+    setImage(event.target.files[0])
+  },[setImage]);
+
   
 
   const submitForm = async () => {
     try{
-      const manualData = {category_id: categoryId, job: job, heading: heading, text: text};
-      const manuals = await categoryRequest("create_manual", manualData);
+      const formData = new FormData();
+      formData.append('image', image);
+      formData.append('category_id', categoryId);
+      formData.append('job', job);
+      formData.append('heading', heading);
+      formData.append('text', text);
+      // const manualData = {category_id: categoryId, job: job, heading: heading, text: text}; これでは画像データが送れない。formData()を使う。
+      // console.log(manualData);
+      const manuals = await categoryRequest("create_manual", formData, headers);
       console.log(manuals);
       await setManuals(manuals.data[1]);
       setCategoryId(0)
@@ -89,6 +103,8 @@ const NewManualModal = (props) => {
       <TextField id="filled-basic" label="業務の見出し" variant="filled" onChange={inputHeading} />
       <h5>業務内容を入力</h5>
       <TextField id="filled-basic" label="業務内容" variant="filled" onChange={inputText} />
+      <h5>画像</h5>
+      <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage} />
       <div>
         <input
           className="input_submit"
