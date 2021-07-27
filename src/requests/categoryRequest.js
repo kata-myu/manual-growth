@@ -3,7 +3,7 @@ import axiosBase from "axios";
 const url = window.location.href
 
 
-const categoryRequest = async (action, params, headers) => {
+const categoryRequest = async (action, params) => {
   switch(action){
     case "fetch":
       if(url === "http://localhost:3001/"){
@@ -28,7 +28,7 @@ const categoryRequest = async (action, params, headers) => {
           baseURL: "http://localhost:3000/",
           responseType: "json",
         });
-        const categoriesData = await api.post("categories", params, headers);
+        const categoriesData = await api.post("categories", params);
         return categoriesData;
         }
         else{
@@ -36,7 +36,7 @@ const categoryRequest = async (action, params, headers) => {
             baseURL: "https://manual-growth-server.herokuapp.com/",
             responseType: "json",
           });
-          const categoriesData = await api.post("categories", params, headers);
+          const categoriesData = await api.post("categories", params);
           return categoriesData;
         }
     case "create_manual":
@@ -45,7 +45,7 @@ const categoryRequest = async (action, params, headers) => {
           baseURL: "http://localhost:3000/",
           responseType: "json",
         });
-        const categoriesData = await api.post(`categories/create_manual`, params, headers);
+        const categoriesData = await api.post(`categories/create_manual`, params);
         return categoriesData;
         }
         else{
@@ -53,7 +53,7 @@ const categoryRequest = async (action, params, headers) => {
             baseURL: "https://manual-growth-server.herokuapp.com/",
             responseType: "json",
           });
-          const categoriesData = await api.post("categories/create_manual", params, headers);
+          const categoriesData = await api.post("categories/create_manual", params);
           return categoriesData;
         }
     case "delete_manual":

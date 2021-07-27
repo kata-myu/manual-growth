@@ -24,7 +24,7 @@ const NewManualModal = (props) => {
 
   const categories  = useContext(CategoryContext)
   const setManuals  = useContext(SetManualContext)
-  const headers = { "Content-Type": "multipart/form-data" };
+  // const headers = { "Content-Type": "multipart/form-data" };
 
   const classes = useStyles();
 
@@ -66,7 +66,7 @@ const NewManualModal = (props) => {
       formData.append('text', text);
       // const manualData = {category_id: categoryId, job: job, heading: heading, text: text}; これでは画像データが送れない。formData()を使う。
       // console.log(manualData);
-      const manuals = await categoryRequest("create_manual", formData, headers);
+      const manuals = await categoryRequest("create_manual", formData);
       console.log(manuals);
       await setManuals(manuals.data[1]);
       setCategoryId(0)
