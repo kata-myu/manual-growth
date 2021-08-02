@@ -70,8 +70,10 @@ const NewManualModal = (props) => {
       console.log(manuals);
       await setManuals(manuals.data[1]);
       setCategoryId(0)
+      setJob("")
       setHeading("")
       setText("")
+      setImage("")
       return props.handleClose()
     }catch(err){
       console.log(err);
