@@ -12,7 +12,6 @@ import Typography from '@material-ui/core/Typography';
 import {useState} from "react";
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Modal from "react-modal";
-// @ts-expect-error ts-migrate(6142) FIXME: Module '../modal/showModal' was resolved to '/User... Remove this comment to see the full error message
 import ShowModal from "../modal/showModal";
 import "./main.css"
 
@@ -58,41 +57,31 @@ export default function MediaCard(props: any) {
   return (
       // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Card className={classes.root} className="card">
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <CardActionArea onClick={handleOpen}>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <CardMedia
             className={classes.media}
             image={props.manual.image_url}
             // image="/images/image1.jpg"  //publicがとっぷになっているっぽい
             title="Contemplative Reptile"
           />
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <CardContent>
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Typography gutterBottom variant="h5" component="h2">
               {props.manual.job}
             </Typography>
-            {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
             <Typography variant="body2" color="textSecondary" component="p">
               {props.manual.heading}
             </Typography>
           </CardContent>
         </CardActionArea>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <CardActions>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Button size="small" color="primary">
             Share
           </Button>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <Button size="small" color="primary">
             Learn More
           </Button>
         </CardActions>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
-          {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
           <ShowModal manual={props.manual} handleClose={handleClose} />
         </Modal>
       </Card>

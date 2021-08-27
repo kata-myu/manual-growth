@@ -1,7 +1,5 @@
 import React, {useContext, useState, useCallback} from 'react';
-// @ts-expect-error ts-migrate(6142) FIXME: Module '../../App' was resolved to '/Users/tech-ca... Remove this comment to see the full error message
 import {SetManualContext} from "../../App";
-// @ts-expect-error ts-migrate(6142) FIXME: Module '../../App' was resolved to '/Users/tech-ca... Remove this comment to see the full error message
 import {CategoryContext} from "../../App";
 import categoryRequest from "../../requests/categoryRequest";
 import { makeStyles } from '@material-ui/core/styles';
@@ -85,42 +83,27 @@ const NewManualModal = (props: any) => {
   };
 
 
-  // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
   return (<form className={classes.root} noValidate autoComplete="off">
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <FormControl className={(classes as any).formControl}>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <InputLabel id="demo-simple-select-label">カテゴリを選択</InputLabel>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <Select labelId="demo-simple-select-label" id="demo-simple-select" 
 // value={0}
 onChange={inputCategory}>
           {(categories as any).map((category: any, index: any) => {
-        // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
         return (<MenuItem key={index} value={category.id}>{category.name}</MenuItem>);
     })}
         </Select>
       </FormControl>
       
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <h5>マニュアル名を入力</h5>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <TextField id="filled-basic" label="マニュアル名" variant="filled" onChange={inputJob}/>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <h5>業務の見出しを入力</h5>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <TextField id="filled-basic" label="業務の見出し" variant="filled" onChange={inputHeading}/>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <h5>業務内容を入力</h5>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <TextField id="filled-basic" label="業務内容" variant="filled" onChange={inputText}/>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <h5>画像</h5>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage}/>
-      {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
       <div>
-        {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
         <input className="input_submit" type="button" value="登録" onClick={submitForm}/>
         </div>
     </form>);
