@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import {useState} from "react";
+// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
 import "./main.css"
@@ -38,7 +39,7 @@ const customStyles = {
   },
 };
 
-export default function MediaCard(props) {
+export default function MediaCard(props: any) {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
@@ -54,6 +55,7 @@ export default function MediaCard(props) {
   Modal.setAppElement("#root");
 
   return (
+      // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Card className={classes.root} className="card">
         <CardActionArea onClick={handleOpen}>
           <CardMedia

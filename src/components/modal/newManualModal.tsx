@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewManualModal = (props) => {
+const NewManualModal = (props: any) => {
 
   const categories  = useContext(CategoryContext)
   const setManuals  = useContext(SetManualContext)
@@ -60,6 +60,7 @@ const NewManualModal = (props) => {
     try{
       const formData = new FormData();
       formData.append('image', image);
+      // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
       formData.append('category_id', categoryId);
       formData.append('job', job);
       formData.append('heading', heading);
@@ -68,7 +69,8 @@ const NewManualModal = (props) => {
       // console.log(manualData);
       const manuals = await categoryRequest("create_manual", formData);
       console.log(manuals);
-      await setManuals(manuals.data[1]);
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
+      await (setManuals as any)(manuals.data[1]);
       setCategoryId(0)
       setJob("")
       setHeading("")
@@ -81,41 +83,29 @@ const NewManualModal = (props) => {
   };
 
 
-  return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <FormControl className={classes.formControl}>
+  return (<form className={classes.root} noValidate autoComplete="off">
+      <FormControl className={(classes as any).formControl}>
         <InputLabel id="demo-simple-select-label">カテゴリを選択</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          // value={0}
-          onChange={inputCategory}
-        >
-          {categories.map((category, index) => {
-            return(
-              <MenuItem key={index} value={category.id}>{category.name}</MenuItem>
-            )
-          })}
+        <Select labelId="demo-simple-select-label" id="demo-simple-select" 
+// value={0}
+onChange={inputCategory}>
+          {(categories as any).map((category: any, index: any) => {
+        return (<MenuItem key={index} value={category.id}>{category.name}</MenuItem>);
+    })}
         </Select>
       </FormControl>
       
       <h5>マニュアル名を入力</h5>
-      <TextField id="filled-basic" label="マニュアル名" variant="filled" onChange={inputJob} />
+      <TextField id="filled-basic" label="マニュアル名" variant="filled" onChange={inputJob}/>
       <h5>業務の見出しを入力</h5>
-      <TextField id="filled-basic" label="業務の見出し" variant="filled" onChange={inputHeading} />
+      <TextField id="filled-basic" label="業務の見出し" variant="filled" onChange={inputHeading}/>
       <h5>業務内容を入力</h5>
-      <TextField id="filled-basic" label="業務内容" variant="filled" onChange={inputText} />
+      <TextField id="filled-basic" label="業務内容" variant="filled" onChange={inputText}/>
       <h5>画像</h5>
-      <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage} />
+      <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage}/>
       <div>
-        <input
-          className="input_submit"
-          type="button"
-          value="登録"
-          onClick={submitForm}
-        />
+        <input className="input_submit" type="button" value="登録" onClick={submitForm}/>
         </div>
-    </form>
-  );
+    </form>);
 };
 export default NewManualModal;

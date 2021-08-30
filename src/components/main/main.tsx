@@ -8,8 +8,7 @@ const Main = () => {
 
   const manualsData = useContext(ManualContext)
 
-  return(
-    <div className="main">
+  return (<div className="main">
      
       <div className="main-top">
         <AssignmentIcon /> 
@@ -18,16 +17,13 @@ const Main = () => {
 
       <div className="items">
         
-        {manualsData.map((manual, index) => {
-          return(
-            <div className="item" key={index}>
-              <MediaCard manual={manual} />
-            </div>
-          )
-        })}
+        {(manualsData as any).map((manual: any, index: any) => {
+        return (<div className="item" key={index}>
+              <MediaCard manual={manual}/>
+            </div>);
+    })}
         
       </div>
-    </div>
-  );
+    </div>);
 };
 export default Main;

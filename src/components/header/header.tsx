@@ -91,7 +91,7 @@ export default function PrimarySearchAppBar() {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event) => {
+  const handleProfileMenuOpen = (event: any) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -104,7 +104,7 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event) => {
+  const handleMobileMenuOpen = (event: any) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -170,79 +170,59 @@ export default function PrimarySearchAppBar() {
   const setManuals  = useContext(SetManualContext)
 
 
-  const searchManual = async (word) => {
+  const searchManual = async (word: any) => {
     try{
       const searchManual = {word: word}
       const manuals = await categoryRequest("search_manual", searchManual);
       console.log(manuals);
-      await setManuals(manuals.data[1]);
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
+      await (setManuals as any)(manuals.data[1]);
     }catch(err){
       console.log(err);
     }
   };
 
 
-  return (
-    <div className={classes.grow}>
+  return (<div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="open drawer">
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             ManualGrowth
           </Typography>
-          <div className="search" onChange={(e) => searchManual(e.target.value)}>
+          <div className="search" onChange={(e) => searchManual((e.target as any).value)}>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
-              />
+              <InputBase placeholder="Search…" classes={{
+        root: classes.inputRoot,
+        input: classes.inputInput,
+    }} inputProps={{ 'aria-label': 'search' }}/>
             </div>
           </div>
-          <div className={classes.grow} />
+          <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
             {/* <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
+      <Badge badgeContent={4} color="secondary">
+        <MailIcon />
+      </Badge>
+    </IconButton> */}
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={7} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              // onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
+            <IconButton edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" 
+// onClick={handleProfileMenuOpen}
+color="inherit">
               <AccountCircle />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
-              aria-controls={mobileMenuId}
-              aria-haspopup="true"
-              onClick={handleMobileMenuOpen}
-              color="inherit"
-            >
+            <IconButton aria-label="show more" aria-controls={mobileMenuId} aria-haspopup="true" onClick={handleMobileMenuOpen} color="inherit">
               <MoreIcon />
             </IconButton>
           </div>
@@ -250,6 +230,5 @@ export default function PrimarySearchAppBar() {
       </AppBar>
       {renderMobileMenu}
       {renderMenu}
-    </div>
-  );
+    </div>);
 }

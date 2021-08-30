@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const PlusCategory = (props) => {
+const PlusCategory = (props: any) => {
   const classes = useStyles();
 
 
@@ -32,7 +32,8 @@ const PlusCategory = (props) => {
       const categoryData = {name: name};
       const categories = await categoryRequest("create", categoryData);
       console.log(categories);
-      await setCategories(categories.data[0]);
+      // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
+      await (setCategories as any)(categories.data[0]);
       setName("")
       return props.handleClose()
     }catch(err){

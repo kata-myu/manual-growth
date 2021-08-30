@@ -3,7 +3,7 @@ import axiosBase from "axios";
 const url = window.location.href
 
 
-const categoryRequest = async (action, params) => {
+const categoryRequest = async (action: any, params: any) => {
   switch(action){
     case "fetch":
       if(url === "http://localhost:3001/"){
