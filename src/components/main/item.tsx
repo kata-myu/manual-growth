@@ -54,13 +54,26 @@ export default function MediaCard(props: any) {
 
   Modal.setAppElement("#root");
 
+  let imageUrl;
+
+  if(props.manual.category_id == 5){
+     imageUrl = "/images/rails.svg"
+  }else if(props.manual.category_id == 15){
+    imageUrl = "/images/js-image.jpg"
+  } else if (props.manual.category_id == 25){
+    imageUrl = "/images/ruby.svg"
+  }
+
+  console.log(props.manual);
+
   return (
       // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
       <Card className={classes.root} className="card">
         <CardActionArea onClick={handleOpen}>
           <CardMedia
             className={classes.media}
-            image={props.manual.image_url}
+            image={imageUrl}
+            // {props.manual.image_url}
             // image="/images/image1.jpg"  //publicがとっぷになっているっぽい
             title="Contemplative Reptile"
           />

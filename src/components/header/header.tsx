@@ -190,7 +190,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            ManualGrowth
+            SystemGrowth
           </Typography>
           <div className="search" onChange={(e) => searchManual((e.target as any).value)}>
             <div className={classes.search}>
