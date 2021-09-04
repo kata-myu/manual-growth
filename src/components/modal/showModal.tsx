@@ -68,7 +68,7 @@ const ShowModal = (props: any) => {
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography className={classes.heading}>{props.manual.job}</Typography>
+            <Typography className={classes.heading}>{props.manual.title}</Typography>
             <Typography className={classes.secondaryHeading}>{props.manual.heading}</Typography>
           </AccordionSummary>
           <AccordionDetails>

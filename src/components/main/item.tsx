@@ -54,14 +54,16 @@ export default function MediaCard(props: any) {
 
   Modal.setAppElement("#root");
 
+
+  
   let imageUrl;
 
-  if(props.manual.category_id == 5){
-     imageUrl = "/images/rails.svg"
-  }else if(props.manual.category_id == 15){
+  if(props.manual.category_id == 1){
+     imageUrl = "/images/ruby.svg"
+  }else if(props.manual.category_id == 2){
+    imageUrl = "/images/rails.svg"
+  } else if (props.manual.category_id == 3){
     imageUrl = "/images/js-image.jpg"
-  } else if (props.manual.category_id == 25){
-    imageUrl = "/images/ruby.svg"
   }
 
   console.log(props.manual);
@@ -79,7 +81,7 @@ export default function MediaCard(props: any) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.manual.job}
+              {props.manual.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
               {props.manual.heading}

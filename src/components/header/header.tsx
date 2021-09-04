@@ -211,9 +211,9 @@ export default function PrimarySearchAppBar() {
       </Badge>
     </IconButton> */}
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={7} color="secondary">
+              {/* <Badge badgeContent={7} color="secondary">
                 <NotificationsIcon />
-              </Badge>
+              </Badge> */}
             </IconButton>
             <IconButton edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" 
 // onClick={handleProfileMenuOpen}
