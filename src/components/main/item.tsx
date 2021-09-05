@@ -1,5 +1,5 @@
 // Card メディア
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -14,6 +14,7 @@ import {useState} from "react";
 import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
 import "./main.css"
+import { CategoryContext } from '../../App';
 
 const useStyles = makeStyles({
   root: {
@@ -47,11 +48,9 @@ export default function MediaCard(props: any) {
   const handleOpen = () => {
     setIsOpen(true);
   };
-
   const handleClose = () => {
     setIsOpen(false);
   };
-
   Modal.setAppElement("#root");
 
 
@@ -65,7 +64,14 @@ export default function MediaCard(props: any) {
     imageUrl = "/images/js-image.jpg"
   }
 
-  console.log(props.manual);
+  let categoryName;
+  if(props.manual.category_id == 1){
+    categoryName = "Ruby"
+ }else if(props.manual.category_id == 2){
+   imageUrl = "Rails"
+ } else if (props.manual.category_id == 3){
+   imageUrl = "JavaScript"
+ }
 
   return (
       // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
@@ -88,7 +94,7 @@ export default function MediaCard(props: any) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-        <span>カテゴリ名</span>
+        <div style={{marginRight: 20}}>{categoryName}</div>
           <Button size="small" color="primary">
           share with twitter
           </Button>
