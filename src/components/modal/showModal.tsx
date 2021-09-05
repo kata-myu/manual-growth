@@ -53,12 +53,17 @@ const ShowModal = (props: any) => {
     }
   };
 
+  let noImage;
+  if(props.manual.image_url == 'no image') {
+     noImage = {display: 'none'}
+  }
+
   return (
     <div>
       <div className="delete-button" onClick={deleteManual}>
-        <Button variant="contained" color="secondary">
-          このマニュアルを削除する
-        </Button>
+        {/* <Button variant="contained" color="secondary">
+          削除する
+        </Button> */}
       </div>
       <div className={classes.root}>
         {/* @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message */}
@@ -68,8 +73,7 @@ const ShowModal = (props: any) => {
             aria-controls="panel1bh-content"
             id="panel1bh-header"
           >
-            <Typography className={classes.heading}>{props.manual.title}</Typography>
-            <Typography className={classes.secondaryHeading}>{props.manual.heading}</Typography>
+            <Typography style={{ whiteSpace: 'pre-line' }} className={classes.secondaryHeading}>{props.manual.heading}</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
@@ -78,6 +82,7 @@ const ShowModal = (props: any) => {
           </AccordionDetails>
         </Accordion>
       </div>
+      <img src={props.manual.image_url} style={noImage} />
     </div>
   );
 };

@@ -4,12 +4,15 @@ import {CategoryContext} from "../../App";
 import categoryRequest from "../../requests/categoryRequest";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 // import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+
+import './modal.css';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,13 +98,15 @@ onChange={inputCategory}>
         </Select>
       </FormControl>
       
-      <h5>マニュアル名を入力</h5>
-      <TextField id="filled-basic" label="マニュアル名" variant="filled" onChange={inputtitle}/>
-      <h5>業務の見出しを入力</h5>
-      <TextField id="filled-basic" label="業務の見出し" variant="filled" onChange={inputHeading}/>
-      <h5>業務内容を入力</h5>
-      <TextField id="filled-basic" label="業務内容" variant="filled" onChange={inputText}/>
-      <h5>画像</h5>
+      <h5>タイトルを入力</h5>
+      <TextField id="filled-basic" label="タイトル" variant="filled" onChange={inputtitle}/>
+      <h5>問題を記入</h5>
+      {/* <TextField id="filled-basic" label="問題" variant="filled" onChange={inputHeading}/> */}
+      <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="問題" onChange={inputHeading} />
+      <h5>解答を記入</h5>
+      {/* <TextField id="filled-basic" label="解答" variant="filled" onChange={inputText}/> */}
+      <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="解答" onChange={inputText} />
+      <h5>画像（任意）</h5>
       <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage}/>
       <div>
         <input className="input_submit" type="button" value="登録" onClick={submitForm}/>

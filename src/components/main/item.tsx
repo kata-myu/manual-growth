@@ -57,7 +57,6 @@ export default function MediaCard(props: any) {
 
   
   let imageUrl;
-
   if(props.manual.category_id == 1){
      imageUrl = "/images/ruby.svg"
   }else if(props.manual.category_id == 2){
@@ -81,20 +80,22 @@ export default function MediaCard(props: any) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {props.manual.title}
+              {props.manual.title} 
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.manual.heading}
+              {props.manual.heading.substr(0, 35) + "..."}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
+        <span>カテゴリ名</span>
           <Button size="small" color="primary">
-            Share
+          share with twitter
           </Button>
-          <Button size="small" color="primary">
+          {/* <Button size="small" color="primary">
             Learn More
-          </Button>
+          </Button> */}
+          
         </CardActions>
         <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
           <ShowModal manual={props.manual} handleClose={handleClose} />
