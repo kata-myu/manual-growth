@@ -190,7 +190,7 @@ export default function PrimarySearchAppBar() {
             <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
-            ManualGrowth
+            SystemGrowth
           </Typography>
           <div className="search" onChange={(e) => searchManual((e.target as any).value)}>
             <div className={classes.search}>
@@ -211,9 +211,9 @@ export default function PrimarySearchAppBar() {
       </Badge>
     </IconButton> */}
             <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={7} color="secondary">
+              {/* <Badge badgeContent={7} color="secondary">
                 <NotificationsIcon />
-              </Badge>
+              </Badge> */}
             </IconButton>
             <IconButton edge="end" aria-label="account of current user" aria-controls={menuId} aria-haspopup="true" 
 // onClick={handleProfileMenuOpen}

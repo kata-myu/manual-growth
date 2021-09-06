@@ -36,14 +36,12 @@ const App = () => {
   
   return(
     <CategoryContext.Provider value={categories}>
-    
     <ManualContext.Provider value={manuals}>
     <SetCategoryContext.Provider value={setCategories}>
     <SetManualContext.Provider value={setManuals}>
-      <div></div>
-      <div>
+      <div className="contentsBody">
         <Header></Header>
-        <div className="contents">
+        <div className="contents" style={{backgroundColor: "#EEEEEE"}}>
           <SideBar></SideBar>
           <Main></Main>
         </div>

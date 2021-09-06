@@ -43,7 +43,7 @@ const SideBar = () => {
     <div className="sidebar">
       <div className="new-manual-button" onClick={handleOpen}>
         <Button variant="contained" color="primary" disableElevation>
-          新しいマニュアルをつくる
+          新しい問題をつくる
         </Button>
       </div>
       <div className="index">
