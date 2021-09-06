@@ -15,6 +15,8 @@ import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
 import "./main.css"
 import { CategoryContext } from '../../App';
+import { FaTwitterSquare } from "react-icons/fa";
+import { IconContext } from 'react-icons'
 
 const useStyles = makeStyles({
   root: {
@@ -61,17 +63,17 @@ export default function MediaCard(props: any) {
   }else if(props.manual.category_id == 2){
     imageUrl = "/images/rails.svg"
   } else if (props.manual.category_id == 3){
-    imageUrl = "/images/js-image.jpg"
+    imageUrl = "/images/javascript.svg"
   }
 
   let categoryName;
   if(props.manual.category_id == 1){
     categoryName = "Ruby"
- }else if(props.manual.category_id == 2){
-   imageUrl = "Rails"
- } else if (props.manual.category_id == 3){
-   imageUrl = "JavaScript"
- }
+  }else if(props.manual.category_id == 2){
+    categoryName = "Rails"
+  } else if (props.manual.category_id == 3){
+    categoryName = "JavaScript"
+  }
 
   return (
       // @ts-expect-error ts-migrate(17004) FIXME: Cannot use JSX unless the '--jsx' flag is provided... Remove this comment to see the full error message
@@ -85,18 +87,23 @@ export default function MediaCard(props: any) {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.manual.title} 
+            <Typography gutterBottom variant="h5" component="h2" style={{borderBlockEnd: 'solid 1px', fontWeight: 'bold' }}>
+              {props.manual.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              {props.manual.heading.substr(0, 35) + "..."}
+              {props.manual.heading.substr(0, 30) + "..."}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-        <div style={{marginRight: 20}}>{categoryName}</div>
+        <div style={{marginRight: 20}}>【{categoryName}】</div>
           <Button size="small" color="primary">
-          share with twitter
+          <a href='https://twitter.com/' target="_blank" style={{textDecoration: 'none', color: '#33CCFF'}}>
+            share 
+            <IconContext.Provider value={{size: '20px' }}>
+              <span style={{marginLeft: 10}}><FaTwitterSquare /></span>
+            </IconContext.Provider>
+          </a>
           </Button>
           {/* <Button size="small" color="primary">
             Learn More

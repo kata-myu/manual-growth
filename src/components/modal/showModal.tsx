@@ -76,13 +76,14 @@ const ShowModal = (props: any) => {
             <Typography style={{ whiteSpace: 'pre-line' }} className={classes.secondaryHeading}>{props.manual.heading}</Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography>
+            <Typography style={{ whiteSpace: 'pre-line' }}>
+              <div style={{color: 'red'}}>【解答】</div>
               {props.manual.text}
             </Typography>
           </AccordionDetails>
         </Accordion>
       </div>
-      <img src={props.manual.image_url} style={noImage} />
+      <img src={props.manual.image_url} style={noImage} className="showImage" />
     </div>
   );
 };
