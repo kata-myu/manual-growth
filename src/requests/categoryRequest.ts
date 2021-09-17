@@ -56,6 +56,23 @@ const categoryRequest = async (action: any, params: any) => {
           const categoriesData = await api.post("categories/create_manual", params);
           return categoriesData;
         }
+    case "update_manual":
+      if(url === "http://localhost:3001/"){
+        const api = axiosBase.create({
+          baseURL: "http://localhost:3000/",
+          responseType: "json",
+        });
+        const categoriesData = await api.patch(`categories/update_manual`, params);
+        return categoriesData;
+        }
+        else{
+          const api = axiosBase.create({
+            baseURL: "https://manual-growth-server.herokuapp.com/",
+            responseType: "json",
+          });
+          const categoriesData = await api.patch("categories/update_manual", params);
+          return categoriesData;
+        }
     case "delete_manual":
       if(url === "http://localhost:3001/"){
         const api = axiosBase.create({

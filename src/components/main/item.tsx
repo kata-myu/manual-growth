@@ -13,6 +13,7 @@ import {useState} from "react";
 // @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
+import EditManualModal from '../modal/editManualModal';
 import "./main.css"
 import { CategoryContext } from '../../App';
 import { FaTwitterSquare } from "react-icons/fa";
@@ -46,12 +47,20 @@ export default function MediaCard(props: any) {
   const classes = useStyles();
 
   const [isOpen, setIsOpen] = useState(false);
-
   const handleOpen = () => {
     setIsOpen(true);
   };
   const handleClose = () => {
     setIsOpen(false);
+  };
+  Modal.setAppElement("#root");
+
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const handleEditOpen = () => {
+    setIsEditOpen(true);
+  };
+  const handleEditClose = () => {
+    setIsEditOpen(false);
   };
   Modal.setAppElement("#root");
 
@@ -72,7 +81,7 @@ export default function MediaCard(props: any) {
   }else if(props.manual.category_id == 2){
     categoryName = "Rails"
   } else if (props.manual.category_id == 3){
-    categoryName = "JavaScript"
+    categoryName = "JS"
   }
 
   return (
@@ -87,7 +96,7 @@ export default function MediaCard(props: any) {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2" style={{borderBlockEnd: 'solid 1px', fontWeight: 'bold' }}>
+            <Typography gutterBottom variant="h5" component="h2" style={{borderBlockEnd: 'solid 1px', fontWeight: 'bold', fontSize: 20 }}>
               {props.manual.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
@@ -96,22 +105,25 @@ export default function MediaCard(props: any) {
           </CardContent>
         </CardActionArea>
         <CardActions>
-        <div style={{marginRight: 20}}>【{categoryName}】</div>
-          <Button size="small" color="primary">
-          <a href='https://twitter.com/' target="_blank" style={{textDecoration: 'none', color: '#33CCFF'}}>
-            share 
-            <IconContext.Provider value={{size: '20px' }}>
-              <span style={{marginLeft: 10}}><FaTwitterSquare /></span>
-            </IconContext.Provider>
-          </a>
+        <div >【{categoryName}】</div>
+          <Button size="small" color="primary" style={{marginRight: 15, fontSize: 12, color: 'gray'}} onClick={handleEditOpen}>
+            編集
           </Button>
-          {/* <Button size="small" color="primary">
-            Learn More
-          </Button> */}
+          <Button size="small" color="primary">
+            <a href='https://twitter.com/' target="_blank" style={{textDecoration: 'none', color: '#33CCFF'}}>
+              share 
+              <IconContext.Provider value={{size: '20px' }}>
+                <span style={{marginLeft: 5}}><FaTwitterSquare /></span>
+              </IconContext.Provider>
+            </a>
+          </Button>
           
         </CardActions>
         <Modal isOpen={isOpen} style={customStyles} onRequestClose={handleClose}>
           <ShowModal manual={props.manual} handleClose={handleClose} />
+        </Modal>
+        <Modal isOpen={isEditOpen} style={customStyles} onRequestClose={handleEditClose}>
+          <EditManualModal manual={props.manual} handleClose={handleEditClose} />
         </Modal>
       </Card>
   );

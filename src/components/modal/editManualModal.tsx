@@ -1,4 +1,4 @@
-import React, {useContext, useState, useCallback} from 'react';
+import React, {useContext, useState, useCallback, useEffect} from 'react';
 import {SetManualContext} from "../../App";
 import {CategoryContext} from "../../App";
 import categoryRequest from "../../requests/categoryRequest";
@@ -14,6 +14,7 @@ import Select from '@material-ui/core/Select';
 
 import './modal.css';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewManualModal = (props: any) => {
+const EditManualModal = (props: any) => {
 
   const categories  = useContext(CategoryContext)
   const setManuals  = useContext(SetManualContext)
@@ -57,7 +58,6 @@ const NewManualModal = (props: any) => {
     setImage(event.target.files[0])
   },[setImage]);
 
-
   
 
   const submitForm = async () => {
@@ -69,9 +69,10 @@ const NewManualModal = (props: any) => {
       formData.append('title', title);
       formData.append('heading', heading);
       formData.append('text', text);
+      formData.append('id', props.manual.id);
       // const manualData = {category_id: categoryId, title: title, heading: heading, text: text}; これでは画像データが送れない。formData()を使う。
       // console.log(manualData);
-      const manuals = await categoryRequest("create_manual", formData);
+      const manuals = await categoryRequest("update_manual", formData);
       console.log(manuals);
       // @ts-expect-error ts-migrate(2531) FIXME: Object is possibly 'null'.
       await (setManuals as any)(manuals.data[1]);
@@ -87,15 +88,25 @@ const NewManualModal = (props: any) => {
   };
 
 
-  return (<form className={classes.root} noValidate autoComplete="off">
+  useEffect(() => {
+    console.log(props.manual);
+    setCategoryId(props.manual.category_id)
+    settitle(props.manual.title)
+    setHeading(props.manual.heading)
+    setText(props.manual.text)
+  }, [])
+
+
+  return (
+      <form className={classes.root} noValidate autoComplete="off">
       <FormControl className={(classes as any).formControl}>
         <InputLabel id="demo-simple-select-label">カテゴリを選択</InputLabel>
         <Select labelId="demo-simple-select-label" id="demo-simple-select" 
-// value={0}
-onChange={inputCategory}>
+          value={categoryId}
+          onChange={inputCategory}>
           {(categories as any).map((category: any, index: any) => {
         return (<MenuItem key={index} value={category.id}>{category.name}</MenuItem>);
-    })}
+           })}
         </Select>
       </FormControl>
       
@@ -103,15 +114,15 @@ onChange={inputCategory}>
       <TextField id="filled-basic" label="タイトル" variant="filled" onChange={inputtitle} value={title} />
       <h5>問題を記入</h5>
       {/* <TextField id="filled-basic" label="問題" variant="filled" onChange={inputHeading}/> */}
-      <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="問題" onChange={inputHeading} />
+      <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="問題" onChange={inputHeading} value={heading} />
       <h5>解答を記入</h5>
       {/* <TextField id="filled-basic" label="解答" variant="filled" onChange={inputText}/> */}
-      <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="解答" onChange={inputText} />
+      <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="解答" onChange={inputText} value={text} />
       <h5>画像（任意）</h5>
       <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage}/>
       <div>
-        <input className="input_submit" type="button" value="登録" onClick={submitForm}/>
-        </div>
+        <input className="input_submit" type="button" value="更新" onClick={submitForm}/>
+      </div>
     </form>);
 };
-export default NewManualModal;
+export default EditManualModal;
