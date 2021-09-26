@@ -4,7 +4,6 @@ import SimpleList from "./category";
 import NewManualModal from "../modal/newManualModal";
 import "./sidebar.css";
 import Button from '@material-ui/core/Button';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Modal from "react-modal";
 
 

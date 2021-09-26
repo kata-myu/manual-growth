@@ -1,6 +1,5 @@
 // List(シンプルなリスト)
 import React, {useState, useContext} from 'react';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
 import Modal from "react-modal";
 import PlusCategoy from "../modal/plusCategory";
 import "./sidebar";

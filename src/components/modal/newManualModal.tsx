@@ -54,7 +54,8 @@ const NewManualModal = (props: any) => {
   },[setText]);
 
   const inputImage = useCallback((event) => {
-    setImage(event.target.files[0])
+    const files = event.target.files;
+    setImage(files)
   },[setImage]);
 
 
@@ -63,7 +64,12 @@ const NewManualModal = (props: any) => {
   const submitForm = async () => {
     try{
       const formData = new FormData();
-      formData.append('image', image);
+      // formData.append('images', image);
+      if(image[0] !== null) {
+        for (let i = 0; i < image.length; i++) {
+          formData.append(`images${i}`, image[i])
+        }
+      }
       // @ts-expect-error ts-migrate(2345) FIXME: Argument of type 'number' is not assignable to par... Remove this comment to see the full error message
       formData.append('category_id', categoryId);
       formData.append('title', title);
@@ -107,8 +113,8 @@ onChange={inputCategory}>
       <h5>解答を記入</h5>
       {/* <TextField id="filled-basic" label="解答" variant="filled" onChange={inputText}/> */}
       <TextareaAutosize className='textArea' aria-label="minimum height" placeholder="解答" onChange={inputText} />
-      <h5>画像（任意）</h5>
-      <input type="file" id="image" name="image" accept="image/png,image/jpeg" onChange={inputImage}/>
+      <h5>画像（3枚まで投稿できます。）</h5>
+      <input type="file" id="image" name="image" accept="image/png,image/jpeg" multiple onChange={inputImage}/>
       <div>
         <input className="input_submit" type="button" value="登録" onClick={submitForm}/>
         </div>
