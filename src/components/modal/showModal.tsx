@@ -1,4 +1,5 @@
 import React, {useContext} from 'react';
+import Image from 'react-image-resizer';
 import {SetManualContext} from "../../App";
 import categoryRequest from "../../requests/categoryRequest";
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,7 +8,7 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import { defaultStyles } from 'react-modal';
 import Button from '@material-ui/core/Button';
 import "./modal.css";
@@ -53,13 +54,17 @@ const ShowModal = (props: any) => {
     }
   };
 
-  let noImage;
+  let noImage:any = null;
   if(props.manual.image_url == 'no image') {
      noImage = {display: 'none'}
   }
 
+  
+  const images = props.manual.image_url.split(','); 
+  console.log(images)
+
   return (
-    <div>
+    <div className="showWrapper">
       <div className="delete-button" onClick={deleteManual}>
         {/* <Button variant="contained" color="secondary">
           削除する
@@ -83,7 +88,12 @@ const ShowModal = (props: any) => {
           </AccordionDetails>
         </Accordion>
       </div>
-      <img src={props.manual.image_url} style={noImage} className="showImage" />
+      {images.map((image: any) => {
+        if(image.length > 1){
+          return (<div className="showImage"><Image src={image} height={ 400 } width={ 550 }/></div>)
+          // return (<div><img src={image} style={noImage} className="showImage" /></div>)
+        }
+      })}
     </div>
   );
 };

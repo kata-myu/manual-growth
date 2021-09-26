@@ -10,7 +10,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import {useState} from "react";
-// @ts-expect-error ts-migrate(7016) FIXME: Could not find a declaration file for module 'reac... Remove this comment to see the full error message
+
 import Modal from "react-modal";
 import ShowModal from "../modal/showModal";
 import EditManualModal from '../modal/editManualModal';
@@ -27,6 +27,15 @@ const useStyles = makeStyles({
     height: 140,
   },
 });
+
+const styles = 
+  {
+    media: {
+      height: 0,
+      paddingTop: '56.25%', // 16:9,
+      marginTop:'30'
+    }
+  }
 
 const customStyles = {
   overlay: {
@@ -91,6 +100,7 @@ export default function MediaCard(props: any) {
           <CardMedia
             className={classes.media}
             image={imageUrl}
+            // style={styles.media}
             // {props.manual.image_url}
             // image="/images/image1.jpg"  //publicがとっぷになっているっぽい
             title="Contemplative Reptile"
